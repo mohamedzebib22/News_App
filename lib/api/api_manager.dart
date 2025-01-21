@@ -14,11 +14,8 @@ import 'package:news_app/models/source_response.dart';
  */
 class ApiManager {
   static Future<SourceResponse?> getResponse({required String id}) async {
-    Uri url = Uri.https(
-        ApiConstant.baseUrl, Endpoint.endPoint, {
-          'apiKey': ApiConstant.apiKey,
-          'category' :id
-          });
+    Uri url = Uri.https(ApiConstant.baseUrl, Endpoint.endPoint,
+        {'apiKey': ApiConstant.apiKey, 'category': id});
     try {
       var response = await http.get(url);
       return SourceResponse.fromJson(jsonDecode(response.body));
@@ -37,5 +34,22 @@ class ApiManager {
       throw e;
     }
   }
-}
 
+  static Future<NewsResponse?> searchWithApi(String title) async {
+    Uri url = Uri.https(
+      ApiConstant.baseUrl,
+      Endpoint.newsApi,
+      {
+        'apiKey': ApiConstant.apiKey,
+        'q': title,
+      },
+    );
+
+    try {
+      var response = await http.get(url);
+      return NewsResponse.fromJson(jsonDecode(response.body));
+    } catch (e) {
+      throw e;
+    }
+  }
+}

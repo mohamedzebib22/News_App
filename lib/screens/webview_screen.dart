@@ -12,17 +12,11 @@ class WebviewScreen extends StatefulWidget {
 
 class _WebviewScreenState extends State<WebviewScreen> {
   late final WebViewController controller;
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-   
-  // }
 
   @override
   Widget build(BuildContext context) {
      var args = ModalRoute.of(context)!.settings.arguments as News;
-    //controller = WebViewController()..loadRequest(Uri.parse(args.url ?? ''));
+    controller = WebViewController()..loadRequest(Uri.parse(args.url ?? ''));
 
     print('The url is ${args.url}');
     setState(() {});
