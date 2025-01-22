@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/models/category_model.dart';
 import 'package:news_app/models/news_response.dart';
+import 'package:news_app/provider/change_lang_provider.dart';
+import 'package:news_app/provider/change_theme_provider.dart';
 import 'package:news_app/screens/news_gategory.dart';
 import 'package:news_app/widgets/category_details.dart';
 import 'package:news_app/widgets/custom_text_feild.dart';
+import 'package:news_app/widgets/drawer_widget.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -20,20 +24,32 @@ class _HomePageState extends State<HomePage> {
   List<News> searchResults = [];
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ChangeThemeProvider>(context);
+    var languageProvider = Provider.of<ChangeLangProvider>(context);
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       drawer: Drawer(
+        backgroundColor: Colors.black,
         child: InkWell(
             onTap: () {
-              selectCategoryModel = null;
-              Navigator.pop(context);
-              setState(() {});
+              print('The language is ${languageProvider.currentLang}');
             },
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: height * 0.05),
-              child: Text('GoBack'),
-            )),
+            child: DrawerWidget(onTap: () { 
+              selectCategoryModel = null;
+               Navigator.pop(context);
+               setState(() {});
+             },)),
+        // InkWell(
+        //     onTap: () {
+        //       selectCategoryModel = null;
+        //       Navigator.pop(context);
+        //       setState(() {});
+        //     },
+        //     child: Padding(
+        //       padding: EdgeInsets.symmetric(vertical: height * 0.05),
+        //       child: Text('GoBack'),
+        //     )),
       ),
       appBar: AppBar(
         toolbarHeight: height * 0.08,

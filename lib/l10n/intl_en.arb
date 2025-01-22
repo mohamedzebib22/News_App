@@ -1,0 +1,10 @@
+{
+    "Light":"light",
+    "Dark" : "Dark",
+    "NewsApp" : "NewApp",
+    "Theme":"Theme",
+    "English" : "English",
+    "Arabic" : "Arabic",
+    "GoToHome" : "Go To Home",
+    "language":"language"
+}
